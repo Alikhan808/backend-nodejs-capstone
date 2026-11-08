@@ -1,0 +1,13 @@
+{
+  "name": "secondchance-capstone",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/start.js",
+    "test": "node --test test/integration.test.js",
+    "build": "npm --prefix secondChance-frontend run build"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^10.3.0"
+  }
+}

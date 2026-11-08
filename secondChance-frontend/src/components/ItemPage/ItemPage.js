@@ -25,6 +25,7 @@ function ItemPage() {
       // Get the form data
       const formData = new FormData();
       const file = document.getElementById('file').files[0];
+      if (!file) { setMessage('Select an image'); return; }
       formData.append('file', file);
       formData.append('name', document.getElementById('name').value);
       formData.append('category', category);
@@ -42,6 +43,7 @@ function ItemPage() {
             console.log(url);
               const response = await fetch(url, {
                 method: 'POST',
+                headers: { Authorization: `Bearer ${sessionStorage.getItem('auth-token')}` },
                 body: formData
             });
     
