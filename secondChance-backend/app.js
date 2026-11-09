@@ -9,6 +9,17 @@ app.use('/api/auth',require('./routes/authRoutes'));
 app.use('/api/secondchance/items',require('./routes/secondChanceItemsRoutes'));
 app.use('/api/secondchance/search',require('./routes/searchRoutes'));
 app.get('/api/health',(req,res)=>res.json({status:'ok'}));
+app.get('/api/seed-report', (req, res) => {
+  const report = app.locals.seedReport;
+  if (!report) return res.status(404).send('Import report unavailable');
+  res.type('text').send([
+    'SecondChance | MongoDB import',
+    'Database: ' + report.database,
+    'Collection: ' + report.collection,
+    'Documents imported: ' + report.insertedCount,
+    'Documents in collection after import: ' + report.total
+  ].join(String.fromCharCode(10)));
+});
 app.use('/api',(req,res)=>res.status(404).json({error:'Not found'}));
 const build=path.join(__dirname,'../secondChance-frontend/build');
 app.get('/',(req,res)=>res.sendFile(path.join(build,'home.html')));

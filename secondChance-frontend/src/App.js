@@ -27,6 +27,9 @@ function App() {
           <Route path="/app/register" element={<RegisterPage />} />
           <Route path="/app/addItem" element={<ItemPage />} />
         </Routes>
+        <footer className="text-center text-secondary small mt-4 mb-3">
+          <a href={window.location.origin}>{window.location.origin}</a>
+        </footer>
         </AppProvider>
   );
 
